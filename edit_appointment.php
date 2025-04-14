@@ -345,6 +345,20 @@ $time_slots_result = $conn->query($time_slots_sql);
         }
         dateInput.addEventListener('change', loadTimeSlots);
         mech.addEventListener('change', loadTimeSlots);
+
+        // validates phone no
+        const phnInput = document.getElementById('phone');
+        const appointmentForm = document.querySelector('form');
+            
+        // checks before submission
+        appointmentForm.addEventListener('submit', function(event) {
+            const digits = phnInput.value.replace(/\D/g, '');
+            if (digits.length < 11) {
+                alert('Please enter a valid phone number with at least 10 digits');
+                event.preventDefault(); // stops form submission
+                phnInput.focus();
+            }
+        });
     });
 </script>
 </body>
